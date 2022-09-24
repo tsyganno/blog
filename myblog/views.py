@@ -24,3 +24,7 @@ def signup(request):
 def signin(request):
     return render(request, 'myblog/signin.html')
 
+
+def search(request):
+    return render(request, 'myblog/search.html')
+
