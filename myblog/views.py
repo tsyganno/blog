@@ -8,3 +8,6 @@ def index(request):
 def post(request):
     return render(request, 'myblog/post_detail.html')
 
+
+def contact(request):
+    return render(request, 'myblog/contact.html')
