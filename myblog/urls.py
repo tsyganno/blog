@@ -1,6 +1,6 @@
 from django.urls import path
 
-from myblog.views import index, post, contact, thanks, signup
+from myblog.views import index, post, contact, thanks, signup, signin
 
 urlpatterns = [
     path('', index),
@@ -8,4 +8,5 @@ urlpatterns = [
     path('contact/', contact),
     path('thanks/', thanks),
     path('signup/', signup),
+    path('signin/', signin),
 ]

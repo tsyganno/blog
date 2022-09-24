@@ -20,3 +20,7 @@ def thanks(request):
 def signup(request):
     return render(request, 'myblog/signup.html')
 
+
+def signin(request):
+    return render(request, 'myblog/signin.html')
+
