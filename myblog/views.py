@@ -11,3 +11,7 @@ def post(request):
 
 def contact(request):
     return render(request, 'myblog/contact.html')
+
+
+def thanks(request):
+    return render(request, 'myblog/thanks.html')
