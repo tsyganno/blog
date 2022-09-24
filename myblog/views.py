@@ -15,3 +15,8 @@ def contact(request):
 
 def thanks(request):
     return render(request, 'myblog/thanks.html')
+
+
+def signup(request):
+    return render(request, 'myblog/signup.html')
+
