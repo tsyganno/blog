@@ -1,8 +1,9 @@
 from django.shortcuts import render
+from django.views.generic.base import TemplateView
 
 
-def index(request):
-    return render(request, 'myblog/home.html')
+class MainView(TemplateView):
+    template_name = 'myblog/home.html'
 
 
 def post(request):
