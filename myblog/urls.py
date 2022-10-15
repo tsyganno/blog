@@ -1,4 +1,5 @@
 from django.urls import path
+from .views import MainView
 
 from myblog.views import MainView, post, contact, thanks, signup, signin, search
 
