@@ -161,3 +161,5 @@ CKEDITOR_CONFIGS = {
 }
 
 ###################################
+
+LOGOUT_REDIRECT_URL = "/"
