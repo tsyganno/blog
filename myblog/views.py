@@ -3,9 +3,39 @@ from django.views import View
 from myblog.models import Post
 from django.core.paginator import Paginator
 from django.shortcuts import get_object_or_404
-from myblog.forms import SigUpForm, SignInForm
+from myblog.forms import SigUpForm, SignInForm, FeedBackForm
 from django.contrib.auth import login, authenticate
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, HttpResponse
+from django.core.mail import send_mail, BadHeaderError
+
+
+class FeedBackView(View):
+    def get(self, request, *args, **kwargs):
+        form = FeedBackForm()
+        return render(request, 'myblog/contact.html', context={
+            'form': form,
+            'title': 'Написать мне'
+        })
+
+    def post(self, request, *args, **kwargs):
+        form = FeedBackForm(request.POST)
+        if form.is_valid():
+            name = form.cleaned_data['name']
+            from_email = form.cleaned_data['email']
+            subject = form.cleaned_data['subject']
+            message = form.cleaned_data['message']
+            print(name)
+            print(from_email)
+            print(subject)
+            print(message)
+            try:
+                send_mail(f'От {name} | {subject}', message, from_email, ['Ваша почта'])
+            except BadHeaderError:
+                return HttpResponse('Невалидный заголовок')
+            return HttpResponseRedirect('success')
+        return render(request, 'myblog/contact.html', context={
+            'form': form,
+        })
 
 
 class MainView(View):
@@ -59,12 +89,11 @@ class SignInView(View):
         })
 
 
-def contact(request):
-    return render(request, 'myblog/contact.html')
-
-
-def thanks(request):
-    return render(request, 'myblog/thanks.html')
+class SuccessView(View):
+    def get(self, request, *args, **kwargs):
+        return render(request, 'myblog/success.html', context={
+            'title': 'Спасибо'
+        })
 
 
 def search(request):
