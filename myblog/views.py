@@ -8,6 +8,9 @@ from django.contrib.auth import login, authenticate
 from django.http import HttpResponseRedirect, HttpResponse
 from django.core.mail import send_mail, BadHeaderError
 
+from conf.settings import EMAIL_HOST_USER, EMAIL_HOST_PASSWORD
+import os
+
 
 class FeedBackView(View):
     def get(self, request, *args, **kwargs):
@@ -24,12 +27,8 @@ class FeedBackView(View):
             from_email = form.cleaned_data['email']
             subject = form.cleaned_data['subject']
             message = form.cleaned_data['message']
-            print(name)
-            print(from_email)
-            print(subject)
-            print(message)
             try:
-                send_mail(f'От {name} | {subject}', message, from_email, ['Ваша почта'])
+                send_mail(f'От {name} | {subject}', message, from_email, ['bairc398@gmail.com'])
             except BadHeaderError:
                 return HttpResponse('Невалидный заголовок')
             return HttpResponseRedirect('success')
