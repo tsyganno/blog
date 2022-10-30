@@ -2,7 +2,7 @@ from django.urls import path
 from django.contrib.auth.views import LogoutView
 from django.conf import settings
 
-from myblog.views import MainView, PostDetailView, FeedBackView, SuccessView, SignUpView, SignInView, search
+from myblog.views import MainView, PostDetailView, FeedBackView, SuccessView, SignUpView, SignInView, SearchResultsView
 
 urlpatterns = [
     path('', MainView.as_view(), name='index'),
@@ -12,5 +12,5 @@ urlpatterns = [
     path('signout/', LogoutView.as_view(), {'next_page': settings.LOGOUT_REDIRECT_URL}, name='signout',),
     path('contact/', FeedBackView.as_view(), name='contact'),
     path('contact/success/', SuccessView.as_view(), name='success'),
-    path('search/', search),
+    path('search/', SearchResultsView.as_view(), name='search_results'),
 ]
