@@ -118,4 +118,3 @@ class FeedBackForm(forms.Form):
             'placeholder': "Ваше сообщение"
         })
     )
-

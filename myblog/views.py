@@ -22,7 +22,7 @@ class PostDetailView(View):
             'common_tags': common_tags,
             'last_posts': last_posts,
             'comment_form': comment_form
-    })
+        })
 
     def post(self, request, slug, *args, **kwargs):
         comment_form = CommentForm(request.POST)
@@ -30,7 +30,7 @@ class PostDetailView(View):
             text = request.POST['text']
             username = self.request.user
             post = get_object_or_404(Post, url=slug)
-            comment = Comment.objects.create(post=post, username=username, text=text)
+            Comment.objects.create(post=post, username=username, text=text)
             return HttpResponseRedirect(request.META.get('HTTP_REFERER', '/'))
         return render(request, 'myblog/post_detail.html', context={
             'comment_form': comment_form
@@ -142,4 +142,3 @@ class SearchResultsView(View):
             'results': page_obj,
             'count': paginator.count
         })
-
